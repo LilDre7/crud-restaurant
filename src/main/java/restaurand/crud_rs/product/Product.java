@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class Product {
     private Long Id;
     private String name;
+    private String position;
     private float price;
     private LocalDate fecha;
     private int antiguedad;
@@ -13,7 +14,8 @@ public class Product {
 
     }
 
-    public Product(Long id, String name, float price, LocalDate fecha, int antiguedad) {
+    // Constructor1 es para el sevidor
+    public Product(Long id, String name, String position, float price, LocalDate fecha, int antiguedad) {
         Id = id;
         this.name = name;
         this.price = price;
@@ -21,13 +23,15 @@ public class Product {
         this.antiguedad = antiguedad;
     }
 
-    public Product(String name, float price, LocalDate fecha, int antiguedad) {
+    // Constructor2 este es para el cliente
+    public Product(String name, String position, float price, LocalDate fecha, int antiguedad) {
         this.name = name;
         this.price = price;
         this.fecha = fecha;
         this.antiguedad = antiguedad;
     }
 
+    // Id
     public Long getId() {
         return Id;
     }
@@ -36,6 +40,7 @@ public class Product {
         Id = id;
     }
 
+    // Name
     public String getName() {
         return name;
     }
@@ -44,6 +49,7 @@ public class Product {
         this.name = name;
     }
 
+    // Price
     public float getPrice() {
         return price;
     }
@@ -52,6 +58,7 @@ public class Product {
         this.price = price;
     }
 
+    // Fecha
     public LocalDate getFecha() {
         return fecha;
     }
@@ -60,6 +67,7 @@ public class Product {
         this.fecha = fecha;
     }
 
+    // Antiguedades
     public int getAntiguedad() {
         return antiguedad;
     }

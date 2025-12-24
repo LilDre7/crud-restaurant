@@ -13,7 +13,7 @@ public class ProductService {
 
     public List<Product> getProducts() {
         return List.of(new Product(
-                1243L, "Laptop", 500, LocalDate.of(2025, Month.MARCH, 5), 2
+                1243L, "Laptop", "Admin", 500, LocalDate.of(2025, Month.MARCH, 5), 2
         ));
     }
 }
