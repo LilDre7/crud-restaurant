@@ -1,19 +1,51 @@
 package restaurand.crud_rs.product;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.time.LocalDate;
-import java.time.Month;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
-    @GetMapping
+
+    private final ProductRepository productRepository;
+
+    @Autowired
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public List<Product> getProducts() {
-        return List.of(new Product(
-                1243L, "Laptop", "Admin", 500, LocalDate.of(2025, Month.MARCH, 5), 2
-        ));
+        return this.productRepository.findAll();
+    }
+
+    public ResponseEntity<Object> newProduct(Product product) {
+        Optional<Product> res = productRepository.findProductByName(product.getName());
+        HashMap<String, Object> datos = new HashMap<>();
+
+
+        if (res.isPresent() && product.getId() == null ) {
+            datos.put("error", true);
+            datos.put("message", "Ya existe un producto con ese nombre");
+            return new ResponseEntity<>(datos, HttpStatus.CONFLICT);
+
+        }
+
+        datos.put("message", "Se guardado con exito");
+
+        if (product.getId() != null){
+            datos.put("message", "Se actualizo con exito");
+        }
+
+        productRepository.save(product);
+        datos.put("data", product);
+        return new ResponseEntity<>(
+                datos,
+                HttpStatus.CREATED
+        );
     }
 }

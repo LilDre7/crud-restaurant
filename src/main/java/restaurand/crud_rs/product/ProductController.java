@@ -13,11 +13,11 @@ package restaurand.crud_rs.product;
  */
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController // Indica que esta clase es un controlador REST y devuelve JSON
 @RequestMapping(path = "api/v1/products") // Ruta base para todos los endpoints de productos
@@ -53,5 +53,16 @@ public class ProductController {
     public List<Product> getProducts() {
         return productService.getProducts();
     }
+
+    @PostMapping
+    public ResponseEntity<Object> registrarProducto(@RequestBody Product product){
+        return this.productService.newProduct(product);
+    }
+
+    @PutMapping
+    public ResponseEntity<Object> actualizarProducto(@RequestBody Product product){
+        return this.productService.newProduct(product);
+    }
+
 
 }
