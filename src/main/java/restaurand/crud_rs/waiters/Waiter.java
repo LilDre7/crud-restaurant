@@ -1,8 +1,11 @@
-package restaurand.crud_rs.product;
+package restaurand.crud_rs.waiters;
 
 import java.time.LocalDate;
 
-public class Product {
+public class Waiter {
+
+    // Propiedades o Atributos de clase
+
     private Long Id;
     private String name;
     private String position;
@@ -10,12 +13,14 @@ public class Product {
     private LocalDate fecha;
     private int antiguedad;
 
-    public Product() {
+    public Waiter() {
 
     }
 
-    // Constructor1 es para el sevidor
-    public Product(Long id, String name, String position, float price, LocalDate fecha, int antiguedad) {
+    // -- Constructores
+
+    // Creamos nuestro constructor con id
+    public Waiter(Long id, String name, String position, float price, LocalDate fecha, int antiguedad) {
         Id = id;
         this.name = name;
         this.position = position;
@@ -24,16 +29,17 @@ public class Product {
         this.antiguedad = antiguedad;
     }
 
-    // Constructor2 este es para el cliente
-    public Product(String name, String position, float price, LocalDate fecha, int antiguedad) {
-        this.name = name;
-        this.position = position;
-        this.price = price;
-        this.fecha = fecha;
+    // Creamos nuestro constructor sin id
+    public Waiter(int antiguedad, LocalDate fecha, float price, String position, String name) {
         this.antiguedad = antiguedad;
+        this.fecha = fecha;
+        this.price = price;
+        this.position = position;
+        this.name = name;
     }
 
-    // Id
+    // -- Getter and Setters
+
     public Long getId() {
         return Id;
     }
@@ -42,7 +48,6 @@ public class Product {
         Id = id;
     }
 
-    // Name
     public String getName() {
         return name;
     }
@@ -51,8 +56,7 @@ public class Product {
         this.name = name;
     }
 
-    // Position
-    public  String getPosition(){
+    public String getPosition() {
         return position;
     }
 
@@ -60,8 +64,6 @@ public class Product {
         this.position = position;
     }
 
-
-    // Price
     public float getPrice() {
         return price;
     }
@@ -70,7 +72,6 @@ public class Product {
         this.price = price;
     }
 
-    // Fecha
     public LocalDate getFecha() {
         return fecha;
     }
@@ -79,7 +80,6 @@ public class Product {
         this.fecha = fecha;
     }
 
-    // Antiguedades
     public int getAntiguedad() {
         return antiguedad;
     }
