@@ -1,53 +1,60 @@
 package restaurand.crud_rs.waiters;
 
+import jakarta.persistence.*;
+import org.springframework.context.annotation.Primary;
+
 import java.time.LocalDate;
+import java.time.Period;
+
+@Entity
+@Table
 
 public class Waiter {
 
-    // Propiedades o Atributos de clase
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long Id;
+    private Long id;
+
+    @Column(unique = true)
     private String name;
     private String position;
     private float price;
     private LocalDate fecha;
+
+    // Esto hace que pueda cambiar
+    @Transient
     private int antiguedad;
 
     public Waiter() {
 
     }
 
-    // -- Constructores
-
-    // Creamos nuestro constructor con id
-    public Waiter(Long id, String name, String position, float price, LocalDate fecha, int antiguedad) {
-        Id = id;
+    // Constructor1 es para el sevidor
+    public Waiter(Long id, String name, String position, float price, LocalDate fecha) {
         this.name = name;
         this.position = position;
         this.price = price;
         this.fecha = fecha;
-        this.antiguedad = antiguedad;
     }
 
-    // Creamos nuestro constructor sin id
-    public Waiter(int antiguedad, LocalDate fecha, float price, String position, String name) {
-        this.antiguedad = antiguedad;
-        this.fecha = fecha;
-        this.price = price;
-        this.position = position;
+    // Constructor2 este es para el cliente
+    public Waiter(String name, String position, float price, LocalDate fecha) {
         this.name = name;
+        this.position = position;
+        this.price = price;
+        this.fecha = fecha;
     }
 
-    // -- Getter and Setters
-
+    // Id
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
     }
 
+    // Name
     public String getName() {
         return name;
     }
@@ -56,6 +63,7 @@ public class Waiter {
         this.name = name;
     }
 
+    // Position
     public String getPosition() {
         return position;
     }
@@ -64,6 +72,8 @@ public class Waiter {
         this.position = position;
     }
 
+
+    // Price
     public float getPrice() {
         return price;
     }
@@ -72,6 +82,7 @@ public class Waiter {
         this.price = price;
     }
 
+    // Fecha
     public LocalDate getFecha() {
         return fecha;
     }
@@ -80,8 +91,9 @@ public class Waiter {
         this.fecha = fecha;
     }
 
+    // Antiguedades
     public int getAntiguedad() {
-        return antiguedad;
+        return Period.between(this.fecha, LocalDate.now()).getYears();
     }
 
     public void setAntiguedad(int antiguedad) {

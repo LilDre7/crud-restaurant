@@ -17,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController // Indica que esta clase es un controlador REST y devuelve JSON
 @RequestMapping(path = "api/v1/products") // Ruta base para todos los endpoints de productos
@@ -35,6 +34,7 @@ public class ProductController {
      * Spring se encarga de proporcionar una instancia de ProductService.
      * Esta es una buena práctica porque mejora la escalabilidad y los tests.
      */
+
     @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;

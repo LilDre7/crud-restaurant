@@ -8,6 +8,9 @@ import java.util.Optional;
 // 👉 Para hablar con la base de datos.
 // Nada más. Nada menos.
 
+// El Repository no piensa, no decide, no habla HTTP.
+// Solo guarda y trae datos.
+
 public interface WaiterRepository extends JpaRepository<Waiter, Long> {
 
     // Aqui lo que hacemos es nuestro Repository es extender nuestra
